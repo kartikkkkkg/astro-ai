@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "astrology-engine"
+version = "0.1.0"
+description = "A Vedic astrology engine for calculating planetary positions, charts, and dashas."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Astrology Engine Team"}
+]
+keywords = ["astrology", "vedic", "jyotish", "astronomy", "swisseph"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "pyswisseph>=2.08.00",
+    "numpy>=1.21.0",
+    "pydantic>=1.8.0",
+    "python-dateutil>=2.8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/astrology-engine"
+Documentation = "https://github.com/yourusername/astrology-engine#readme"
+
+[tool.setuptools.packages]
+find = {where = ["src"]}
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+# Optional: Include package data
+[tool.setuptools.package-data]
+astrology_engine = ["py.typed"]
+
+[tool.setuptools]
+zip-safe = false

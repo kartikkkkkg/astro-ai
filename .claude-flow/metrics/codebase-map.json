@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-05-18T04:20:11.674Z",
+  "projectRoot": "/Users/kartikgupta/ai-workspace/astro-ai",
+  "structure": {
+    "hasPackageJson": false,
+    "hasTsConfig": false,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1779078011674
+}

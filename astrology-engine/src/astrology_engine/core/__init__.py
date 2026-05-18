@@ -1,0 +1,3 @@
+"""
+Core astrology engine module.
+"""

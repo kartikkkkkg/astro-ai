@@ -1,0 +1,189 @@
+import type { Config } from 'tailwindcss'
+
+export default {
+  darkMode: ['class'],
+  content: [
+    './src/pages/**/*.{ts,tsx}',
+    './src/components/**/*.{ts,tsx}',
+    './src/app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
+  theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
+    extend: {
+      colors: {
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        // Refined observatory-inspired color palette
+        observatory: {
+          background: '#000000',           // Pure black for depth
+          backgroundDark: '#000000',       // Deeper black
+          backgroundLighter: '#0a0a0a',    // Nearly black
+          foreground: '#ffffff',           // Pure white for contrast
+          foregroundMuted: '#8a8a8a',      // Muted gray
+
+          // Primary: Deep zinc/graphite
+          zinc: {
+            50: '#f8f9fa',
+            100: '#f1f3f5',
+            200: '#e9ecef',
+            300: '#dee2e6',
+            400: '#ced4da',
+            500: '#adb5bd',   // Main zinc
+            600: '#868e96',
+            700: '#495057',
+            800: '#343a40',
+            900: '#212529',
+            950: '#0a0a0a'    // Near black
+          },
+
+          // Secondary: Muted indigo
+          indigo: {
+            50: '#edeeff',
+            100: '#ddd6fe',
+            200: '#bdd4ff',
+            300: '#9fc5ff',
+            400: '#6ba4ff',
+            500: '#467ce6',   // Main muted indigo
+            600: '#335fc5',
+            700: '#25489e',
+            800: '#1e3a8a',
+            900: '#172554',
+          },
+
+          // Accent: Soft cyan
+          cyan: {
+            50: '#e0f7ff',
+            100: '#b2ebf2',
+            200: '#80deea',
+            300: '#4dd0e1',
+            400: '#26c6da',
+            500: '#00bfa5',   // Soft cyan/teal
+            600: '#009788',
+            700: '#00796b',
+            800: '#006064',
+            900: '#004d40',
+          },
+
+          // Subtle gradients
+          gradient: {
+            nebula: 'from-[#467ce6] via-[#00bfa5] to-[#467ce6]',
+            cosmic: 'from-[#212529] to-[#467ce6]',
+            deep: 'from-[#000000] to-[#212529]',
+          },
+        },
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      fontFamily: {
+        // Inter for body/UI (clean, neutral)
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        // Geist for headings/display (modern, technical)
+        display: ['var(--font-geist)', 'Eurostile', 'system-ui', 'sans-serif'],
+        // Monospace for technical details
+        mono: ['var(--font-geo)', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+        // Subtle, celestial motions
+        'pulse-observatory': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.85' },
+        },
+        'float-gentle': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-4px)' },
+        },
+        'orbit-slow': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'nebula-drift': {
+          '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(6px, -3px) scale(1.05)' },
+          '66%': { transform: 'translate(-3px, 6px) scale(0.98)' },
+        },
+        'star-twinkle': {
+          '0%, 100%': { opacity: '0.6' },
+          '50%': { opacity: '1' },
+        },
+        'materialize': {
+          '0%': { opacity: '0'; transform: 'scale(0.95)' },
+          '100%': { opacity: '1'; transform: 'scale(1)' },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'pulse-observatory': 'pulse-observatory 4s ease-in-out infinite',
+        'float-gentle': 'float-gentle 5s ease-in-out infinite',
+        'orbit-slow': 'orbit-slow 25s linear infinite',
+        'nebula-drift': 'nebula-drift 10s ease-in-out infinite',
+        'star-twinkle': 'star-twinkle 5s ease-in-out infinite',
+        'materialize': 'materialize 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+      },
+      backdropBlur: {
+        xs: '2px',
+      },
+      boxShadow: {
+        observatory: '0 2px 8px rgba(0, 0, 0, 0.3)',
+        observatory-lg: '0 4px 16px rgba(0, 0, 0, 0.4)',
+        observatory-xl: '0 6px 24px rgba(0, 0, 0, 0.5)',
+        // Subtle glass effects
+        glass: '0 2px 8px rgba(255, 255, 255, 0.05)',
+        glass-lg: '0 4px 16px rgba(255, 255, 255, 0.08)',
+        // Soft glow for accents
+        glow: '0 0 8px rgba(0, 191, 165, 0.3)',
+        glow-lg: '0 0 16px rgba(0, 191, 165, 0.5)',
+      },
+    },
+  },
+  plugins: [require('tailwindcss-animate')],
+} satisfies Config

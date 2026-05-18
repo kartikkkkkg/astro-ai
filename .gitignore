@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+venv/
+.venv/
+backend/venv/
+
+# Environment files
+.env
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# Pytest
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Claude/ECC generated state
+.claude-flow/
+.remember/

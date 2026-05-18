@@ -32,3 +32,4 @@ build/
 # Claude/ECC generated state
 .claude-flow/
 .remember/
+everything-claude-code/

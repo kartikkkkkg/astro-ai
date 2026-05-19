@@ -4,8 +4,8 @@ Dependencies for FastAPI endpoints.
 from typing import Generator
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from backend.app.db.session import SessionLocal
-from backend.app.core.config import settings
+from app.db.session import SessionLocal
+from app.core.config import settings
 from jose import jwt
 from pydantic import ValidationError
 from sqlalchemy.orm import Session

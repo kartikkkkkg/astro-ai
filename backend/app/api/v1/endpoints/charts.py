@@ -7,12 +7,13 @@ from typing import List, Optional
 import uuid
 import logging
 
-from backend.app.crud import crud
-from backend.app import schemas
-from backend.app.schemas.chart import ChartType
-from backend.app.api import deps
-from backend.app.services.chart_service import get_chart_service
-from backend.app.workers.chart_generation import generate_chart_task
+from app.crud import crud
+from app import schemas
+from app.schemas.chart import ChartType
+from app.api import deps
+from app.services.chart_service import get_chart_service
+from app.services.astrology_service import AstrologyService
+from app.workers.chart_generation import generate_chart_task
 
 logger = logging.getLogger(__name__)
 

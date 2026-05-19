@@ -6,10 +6,10 @@ import asyncio
 import logging
 from typing import Dict, Any
 from datetime import date
-from backend.app import crud
-from backend.app.db.session import SessionLocal
-from backend.app.services.chart_service import ChartService
-from backend.app.schemas.chart import ChartCreate, ChartType
+from app import crud
+from app.db.session import SessionLocal
+from app.services.chart_service import ChartService
+from app.schemas.chart import ChartCreate, ChartType
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +55,7 @@ def generate_chart_task(
     db = SessionLocal()
     try:
         # Create chart service with dependency injection
-        from backend.app.services.astrology_service import AstrologyService
+        from app.services.astrology_service import AstrologyService
         astrology_service_instance = AstrologyService()
         chart_service = ChartService(db, astrology_service_instance)
 

@@ -4,7 +4,7 @@ Database session management.
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from backend.app.core.config import settings
+from app.core.config import settings
 
 # Create database engine
 engine = create_engine(

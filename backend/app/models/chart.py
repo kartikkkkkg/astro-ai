@@ -10,7 +10,7 @@ class Chart(Base):
     __tablename__ = "charts"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    user_id = Column(Integer, nullable=False)
     chart_type = Column(String(10), nullable=False)  # d1, d9, etc.
     birth_date = Column(Date, nullable=False)
     birth_time = Column(String(5), nullable=False)  # HH:MM format

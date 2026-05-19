@@ -3,8 +3,8 @@ Service layer for chart-related operations.
 """
 from typing import List, Optional, Dict, Any
 from sqlalchemy.orm import Session
-from backend.app import crud, models, schemas
-from backend.app.services.astrology_service import AstrologyService
+from app import crud, models, schemas
+from app.services.astrology_service import AstrologyService
 import logging
 
 logger = logging.getLogger(__name__)
@@ -52,7 +52,7 @@ class ChartService:
         """
         try:
             # Use the astrology service to calculate the chart
-            chart_response = await astrology_service.calculate_chart(chart_in)
+            chart_response = await self.astrology_service.calculate_chart(chart_in)
             return chart_response
         except Exception as e:
             logger.error(f"Chart calculation failed: {e}")
@@ -62,6 +62,6 @@ class ChartService:
 # Factory function to create ChartService instances per request
 def get_chart_service(
     db: Session,
-    astrology_service: AstrologyService
+    astrology_service: AstrologyService = None
 ) -> ChartService:
     return ChartService(db, astrology_service)

@@ -9,14 +9,14 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-[hsl(var(--observatory-background))/20] backdrop-blur-sm border-b border-[hsl(var(--observatory-border))]/10">
+      <header className="bg-[var(--color-neutral-950)]/20 backdrop-blur-sm border-b border-[var(--color-neutral-100)]/10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
             <div className="space-y-1">
-              <h1 className="text-3xl font-display text-foreground">
+              <h1 className="text-3xl font-display text-[var(--color-neutral-50)]">
                 AstroAI Observatory
               </h1>
-              <p className="text-sm text-[hsl(var(--observatory-foreground-muted))]">
+              <p className="text-sm text-[var(--color-neutral-300)]">
                 Premium deterministic astrology platform
               </p>
             </div>
@@ -24,17 +24,17 @@ export default function Dashboard() {
             <div className="flex items-center space-x-4 text-xs">
               {healthData ? (
                 <span className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-[hsl(var(--observatory-accent))]/20 rounded-full">
-                    <div className="w-full h-full bg-[hsl(var(--observatory-accent))] rounded-full animate-pulse-observatory" />
+                  <div className="w-2 h-2 bg-[var(--color-primary-500)]/20 rounded-full">
+                    <div className="w-full h-full bg-[var(--color-primary-500)] rounded-full animate-pulse-observatory" />
                   </div>
-                  <span className="text-[hsl(var(--observatory-foreground-muted))]">Backend: {healthData.status}</span>
+                  <span className="text-[var(--color-neutral-300)]">Backend: {healthData.status}</span>
                 </span>
               ) : (
                 <span className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-[hsl(var(--observatory-destructive))]/20 rounded-full">
-                    <div className="w-full h-full bg-[hsl(var(--observatory-destructive))] rounded-full animate-pulse-observatory" />
+                  <div className="w-2 h-2 bg-[var(--color-error)]/20 rounded-full">
+                    <div className="w-full h-full bg-[var(--color-error)] rounded-full animate-pulse-observatory" />
                   </div>
-                  <span className="text-[hsl(var(--observatory-foreground-muted))]">Backend: Checking...</span>
+                  <span className="text-[var(--color-neutral-300)]">Backend: Checking...</span>
                 </span>
               )}
             </div>

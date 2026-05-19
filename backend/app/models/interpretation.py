@@ -10,7 +10,7 @@ class Interpretation(Base):
     __tablename__ = "interpretations"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    user_id = Column(Integer, nullable=False)
     chart_id = Column(Integer, ForeignKey("charts.id"), nullable=False)
     interpretation_type = Column(String(20), nullable=False)  # basic, detailed, etc.
     language = Column(String(2), nullable=False, default="en")

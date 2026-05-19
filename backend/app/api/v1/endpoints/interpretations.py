@@ -6,11 +6,11 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 import uuid
 
-from backend.app.crud.chart import chart as crud_chart
-from backend.app import schemas
-from backend.app.api import deps
-from backend.app.services.interpretation_service import get_interpretation_service
-from backend.app.workers.ai_interpretation import generate_interpretation_task
+from app.crud.chart import chart as crud_chart
+from app import schemas
+from app.api import deps
+from app.services.interpretation_service import get_interpretation_service
+from app.workers.ai_interpretation import generate_interpretation_task
 
 router = APIRouter()
 

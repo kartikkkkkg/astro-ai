@@ -12,11 +12,11 @@ from typing import List, Optional, Dict, Any
 from datetime import date, datetime
 import logging
 
-from backend.app.schemas.chart import (
+from app.schemas.chart import (
     ChartCreate, ChartResponse, PlanetaryPosition, HouseCusp,
     ChartType, Planet, House, ZodiacSign
 )
-from backend.app.models.chart import Chart as ChartModel
+from app.models.chart import Chart as ChartModel
 
 # Import astrology_engine components
 import sys

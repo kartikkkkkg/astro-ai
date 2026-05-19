@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import design system tokens */
+@import '../../../.ui-design/tokens/tokens.css';
+
 @layer base {
   :root {
     --background: 0 0% 5%;
     --foreground: 0 0% 95%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
 
     --card: 0 0% 10%;
     --card-foreground: 0 0% 95%;
@@ -100,10 +106,20 @@
 @layer components {
   /* Glassmorphism */
   .glass {
-    @apply bg-white bg-opacity-20 backdrop-blur-lg border border-white border-opacity-20 shadow-lg;
+    background-color: hsl(var(--background));
+    background-color: color-mix(in srgb, hsl(var(--background)) 20%, transparent);
+    backdrop-filter: blur(8px);
+    border: 1px solid hsl(var(--border));
+    border-color: color-mix(in srgb, hsl(var(--border)) 20%, transparent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
   .dark .glass {
-    @apply bg-black bg-opacity-20 backdrop-blur-lg border border-white border-opacity-20 shadow-lg;
+    background-color: hsl(var(--background));
+    background-color: color-mix(in srgb, hsl(var(--background)) 20%, transparent);
+    backdrop-filter: blur(8px);
+    border: 1px solid hsl(var(--border));
+    border-color: color-mix(in srgb, hsl(var(--border)) 20%, transparent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 }
 

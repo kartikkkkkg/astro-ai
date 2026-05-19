@@ -49,18 +49,48 @@ def julian_day(birth_date: date, birth_time: time, timezone_offset: float) -> fl
 
 def parse_timezone(timezone_str: str) -> float:
     """
-    Parse timezone string (e.g., '+05:30') to offset in hours.
+    Parse timezone string (e.g., '+05:30', 'EST', 'PST') to offset in hours.
 
     Args:
-        timezone_str: Timezone offset string like '+05:30' or '-04:00'
+        timezone_str: Timezone offset string like '+05:30', '-04:00', 'EST', 'PST', etc.
 
     Returns:
         Offset in hours as float
     """
-    sign = 1 if timezone_str[0] == '+' else -1
-    hours = int(timezone_str[1:3])
-    minutes = int(timezone_str[4:6]) if len(timezone_str) > 3 else 0
-    return sign * (hours + minutes/60.0)
+    # Handle common timezone abbreviations
+    tz_abbrev_to_offset = {
+        'EST': -5.0,  # Eastern Standard Time
+        'EDT': -4.0,  # Eastern Daylight Time
+        'CST': -6.0,  # Central Standard Time
+        'CDT': -5.0,  # Central Daylight Time
+        'MST': -7.0,  # Mountain Standard Time
+        'MDT': -6.0,  # Mountain Daylight Time
+        'PST': -8.0,  # Pacific Standard Time
+        'PDT': -7.0,  # Pacific Daylight Time
+        'AKST': -9.0, # Alaska Standard Time
+        'AKDT': -8.0, # Alaska Daylight Time
+        'HST': -10.0, # Hawaii Standard Time
+        'HDT': -9.0,  # Hawaii Daylight Time
+        'UTC': 0.0,
+        'GMT': 0.0,
+    }
+
+    if timezone_str.upper() in tz_abbrev_to_offset:
+        return tz_abbrev_to_offset[timezone_str.upper()]
+
+    # Handle ISO format like '+05:30' or '-04:00'
+    if len(timezone_str) >= 3 and (timezone_str[0] == '+' or timezone_str[0] == '-'):
+        sign = 1 if timezone_str[0] == '+' else -1
+        try:
+            hours = int(timezone_str[1:3])
+            minutes = int(timezone_str[4:6]) if len(timezone_str) > 5 else 0
+            return sign * (hours + minutes/60.0)
+        except ValueError:
+            # Fallback to 0 if parsing fails
+            return 0.0
+
+    # Default to UTC if unrecognized
+    return 0.0
 
 def validate_birth_data(birth_date: date, birth_time: str,
                        birth_latitude: float, birth_longitude: float) -> Tuple[date, time]:

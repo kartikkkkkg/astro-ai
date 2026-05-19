@@ -7,9 +7,9 @@ import logging
 from typing import Dict, Any, Optional
 from datetime import datetime
 import uuid
-from backend.app import crud
-from backend.app.db.session import SessionLocal
-from backend.app.services.interpretation_service import InterpretationService
+from app import crud
+from app.db.session import SessionLocal
+from app.services.interpretation_service import InterpretationService
 
 logger = logging.getLogger(__name__)
 

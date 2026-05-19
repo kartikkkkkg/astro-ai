@@ -1,0 +1,1 @@
+{"preset": "comprehensive", "colors": {"primary": "#0BF7ED", "secondary": "#FF006E"}, "color_modes": ["light", "dark", "system"], "typography": {"family": "Inter"}, "spacing": "tailwind-compatible", "radius": "moderate", "output_formats": ["css", "tailwind", "ts", "json"], "component_guidelines": true}

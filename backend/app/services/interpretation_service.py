@@ -3,7 +3,7 @@ Service layer for interpretation-related operations.
 """
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from backend.app import crud, models, schemas
+from app import crud, models, schemas
 
 class InterpretationService:
     def __init__(self, db: Session):

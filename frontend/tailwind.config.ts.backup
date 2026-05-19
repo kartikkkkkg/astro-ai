@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 export default {
-  darkMode: 'class',
+  darkMode: ['class'],
   content: [
     './src/pages/**/*.{ts,tsx}',
     './src/components/**/*.{ts,tsx}',
@@ -155,8 +155,8 @@ export default {
           '50%': { opacity: '1' },
         },
         'materialize': {
-          '0%': { opacity: '0', transform: 'scale(0.95)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
+          '0%': { opacity: opacity: '0', transform: 'scale(0.95)' },
+          '100%': { opacity: opacity: '1', transform: 'scale(1)' },
         },
       },
       animation: {
@@ -174,14 +174,14 @@ export default {
       },
       boxShadow: {
         observatory: '0 2px 8px rgba(0, 0, 0, 0.3)',
-        'observatory-lg': '0 4px 16px rgba(0, 0, 0, 0.4)',
-        'observatory-xl': '0 6px 24px rgba(0, 0, 0, 0.5)',
+        observatory-lg: '0 4px 16px rgba(0, 0, 0, 0.4)',
+        observatory-xl: '0 6px 24px rgba(0, 0, 0, 0.5)',
         // Subtle glass effects
         glass: '0 2px 8px rgba(255, 255, 255, 0.05)',
-        'glass-lg': '0 4px 16px rgba(255, 255, 255, 0.08)',
+        glass-lg: '0 4px 16px rgba(255, 255, 255, 0.08)',
         // Soft glow for accents
         glow: '0 0 8px rgba(0, 191, 165, 0.3)',
-        'glow-lg': '0 0 16px rgba(0, 191, 165, 0.5)',
+        glow-lg: '0 0 16px rgba(0, 191, 165, 0.5)',
       },
     },
   },

@@ -4,7 +4,9 @@ Main FastAPI application entry point.
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .api.v1.router import api_router
-from backend.app.core.config import settings
+from app.core.config import settings
+from app.db.session import engine
+from app.db.base_class import Base
 
 app = FastAPI(
     title="AI Astrology Platform API",
@@ -25,6 +27,15 @@ app.add_middleware(
 
 # Include API router
 app.include_router(api_router, prefix="/api/v1")
+
+
+@app.on_event("startup")
+async def startup_event():
+    """
+    Create database tables on startup.
+    """
+    Base.metadata.create_all(bind=engine)
+
 
 @app.get("/", tags=["Health"])
 async def root():

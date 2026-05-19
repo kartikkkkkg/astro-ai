@@ -74,25 +74,45 @@ export function D1Chart({ chartData, className }: D1ChartProps) {
   };
 
   return (
-    <ChartBase className={className}>
-      {/* Chart background circle */}
+    <ChartBase className={`${className} hover:glass-lg transition-all duration-300`}>
+      {/* Outer glow effect */}
+      <circle
+        cx="200"
+        cy="200"
+        r="190"
+        className="fill-none stroke-[hsl(var(--accent))]/10 stroke-2"
+      />
+
+      {/* Chart background circle with glass effect */}
       <circle
         cx="200"
         cy="200"
         r="180"
-        className="fill-[hsl(var(--observatory-background))/20]"
+        className="fill-[hsl(var(--background))/10] stroke-[hsl(var(--border))]/20 stroke-1"
       />
 
-      {/* Zodiac band (outer ring) */}
+      {/* Nebula background effect */}
       <path
         d="M 200,200 m -180,0 a 180,180 0 1,0 360,0 a 180,180 0 1,0 -360,0"
-        className="fill-none stroke-[hsl(var(--observatory-border))]/20 stroke-1"
+        className="fill-[hsl(var(--accent))/0.02] stroke-none"
       />
 
-      {/* Zodiac sign labels */}
+      {/* Zodiac band (outer ring) with enhanced styling */}
+      <path
+        d="M 200,200 m -180,0 a 180,180 0 1,0 360,0 a 180,180 0 1,0 -360,0"
+        className="fill-none stroke-[hsl(var(--border))]/30 stroke-2"
+      />
+
+      {/* Inner decorative ring */}
+      <path
+        d="M 200,200 m -150,0 a 150,150 0 1,0 300,0 a 150,150 0 1,0 -300,0"
+        className="fill-none stroke-[hsl(var(--border))]/10 stroke-1"
+      />
+
+      {/* Zodiac sign labels with enhanced typography */}
       {Object.values(ZODIAC_SIGNS).map((sign) => {
         const angle = ((sign.start + sign.end) / 2 * Math.PI) / 180;
-        const radius = 220;
+        const radius = 230;
         const x = radius * Math.cos(angle) + 200;
         const y = radius * Math.sin(angle) + 200;
 
@@ -103,24 +123,43 @@ export function D1Chart({ chartData, className }: D1ChartProps) {
             y={y}
             textAnchor="middle"
             dominantBaseline="middle"
-            className="text-xs text-[hsl(var(--observatory-foreground-muted))] opacity-60"
+            className="text-sm font-medium text-[hsl(var(--foreground-muted))]/70"
           >
             {sign.name.slice(0, 3)}
           </text>
         );
       })}
 
-      {/* House cusps */}
+      {/* Decorative zodiac dots */}
+      {Object.values(ZODIAC_SIGNS).map((sign, index) => {
+        const angle = (sign.start * Math.PI) / 180;
+        const radius = 190;
+        const x = radius * Math.cos(angle) + 200;
+        const y = radius * Math.sin(angle) + 200;
+
+        return (
+          <circle
+            key={`${sign.name}-dot`}
+            cx={x}
+            cy={y}
+            r="2"
+            className="fill-[hsl(var(--accent))]/50"
+          />
+        );
+      })}
+
+      {/* House cusps with enhanced styling */}
       {chartData.house_cusps.map((house) => (
         <HouseRenderer
           key={house.house}
           houseNumber={parseInt(house.house)}
           longitude={house.longitude}
-          size={12}
+          size={14}
+          className="transition-transform duration-300"
         />
       ))}
 
-      {/* Aspect lines */}
+      {/* Aspect lines with glow effect */}
       {chartData.aspects.map((aspect) => {
         // Find the planetary data for aspect lines
         const planet1Data = chartData.planetary_positions.find(
@@ -139,13 +178,14 @@ export function D1Chart({ chartData, className }: D1ChartProps) {
               aspect={AspectType[aspect.aspect as keyof typeof AspectType] || AspectType.Conjunction}
               orb={aspect.orb}
               exact={aspect.exact}
+              className="transition-all duration-300 hover:stroke-[hsl(var(--accent))]/50"
             />
           );
         }
         return null;
       }).filter(Boolean)}
 
-      {/* Planetary glyphs */}
+      {/* Planetary glyphs with enhanced animations */}
       {chartData.planetary_positions.map((planet) => (
         <PlanetaryGlyph
           key={planet.planet}
@@ -154,17 +194,33 @@ export function D1Chart({ chartData, className }: D1ChartProps) {
           latitude={planet.latitude}
           speed={planet.speed}
           isRetrograde={planet.is_retrograde}
-          size={20}
-          className="transition-transform duration-300"
+          size={24}
+          className="
+            transition-all duration-400
+            hover:scale-110
+            hover:glow-lg
+            [&:active]:scale-105
+          "
         />
       ))}
 
-      {/* Center point */}
+      {/* Enhanced center point with cosmic effect */}
       <circle
         cx="200"
         cy="200"
-        r="3"
-        className="fill-[hsl(var(--observatory-cyan))] opacity-60"
+        r="6"
+        className="
+          fill-[hsl(var(--accent))]
+          animate-[pulse-slow_3s_ease-in-out_infinite]
+        "
+      />
+
+      {/* Inner decorative circle */}
+      <circle
+        cx="200"
+        cy="200"
+        r="8"
+        className="fill-none stroke-[hsl(var(--accent))]/20 stroke-1"
       />
     </ChartBase>
   );

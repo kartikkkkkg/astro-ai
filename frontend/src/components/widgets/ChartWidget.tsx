@@ -4,9 +4,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { useGenerateD1Chart, useGenerateD9Chart } from '@/lib/hooks/useCharts';
 import { D1Chart } from '@/components/charts/D1Chart';
 import { D9Chart } from '@/components/charts/D9Chart';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Sparkles, Moon, MapPin } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { framerMotion } from '@/lib/utils/framerMotion';
+import { PlanetaryPositionCard } from '@/components/ui/planetary-position-card';
 import type { ChartResponse } from '@/types/chart';
 
 interface ChartWidgetProps {
@@ -85,22 +86,23 @@ export function ChartWidget({ chartType, defaultData }: ChartWidgetProps) {
   return (
     <TooltipProvider>
       <div className="space-y-6">
-        <Card className="glass">
-          <CardHeader>
-            <CardTitle>
+        <Card className="glass hover:glass-lg transition-all duration-300 border border-[hsl(var(--border))/0.2]">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-2xl font-display text-[hsl(var(--foreground))]">
               {chartType === 'd1' ? 'D1 Natal Chart' : 'D9 Navamsha Chart'}
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-[hsl(var(--foreground-muted))]">
               Enter birth details to calculate your astrological chart
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <form className="space-y-4" onSubmit={(e) => {
+          <CardContent className="space-y-6">
+            <form className="space-y-6" onSubmit={(e) => {
               e.preventDefault();
               handleGenerateChart();
             }}>
-              <div className="space-y-2">
-                <label htmlFor="birthDate" className="text-sm font-medium text-muted-foreground block">
+              <div className="space-y-4">
+                <label htmlFor="birthDate" className="flex items-center space-x-2 text-sm font-medium text-[hsl(var(--foreground-muted))]">
+                  <MapPin className="h-4 w-4 text-[hsl(var(--accent))]" />
                   Birth Date
                 </label>
                 <input
@@ -108,12 +110,13 @@ export function ChartWidget({ chartType, defaultData }: ChartWidgetProps) {
                   type="date"
                   value={birthData.birth_date}
                   onChange={(e) => setBirthData(prev => ({ ...prev, birth_date: e.target.value }))}
-                  className="w-full px-3 py-2 border border-[hsl(var(--observatory-border))]/30 rounded-lg bg-[hsl(var(--observatory-background))]/20 text-[hsl(var(--observatory-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--observatory-accent))]"
+                  className="w-full px-4 py-3 border border-[hsl(var(--border))/0.3] rounded-lg bg-[hsl(var(--background))/0.2] text-[hsl(var(--foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:border-[hsl(var(--accent))] transition-all duration-200"
                 />
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="birthTime" className="text-sm font-medium text-muted-foreground block">
+              <div className="space-y-4">
+                <label htmlFor="birthTime" className="flex items-center space-x-2 text-sm font-medium text-[hsl(var(--foreground-muted))]">
+                  <Moon className="h-4 w-4 text-[hsl(var(--accent))]" />
                   Birth Time
                 </label>
                 <input
@@ -121,13 +124,14 @@ export function ChartWidget({ chartType, defaultData }: ChartWidgetProps) {
                   type="time"
                   value={birthData.birth_time}
                   onChange={(e) => setBirthData(prev => ({ ...prev, birth_time: e.target.value }))}
-                  className="w-full px-3 py-2 border border-[hsl(var(--observatory-border))]/30 rounded-lg bg-[hsl(var(--observatory-background))]/20 text-[hsl(var(--observatory-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--observatory-accent))]"
+                  className="w-full px-4 py-3 border border-[hsl(var(--border))/0.3] rounded-lg bg-[hsl(var(--background))/0.2] text-[hsl(var(--foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:border-[hsl(var(--accent))] transition-all duration-200"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="latitude" className="text-sm font-medium text-muted-foreground block">
+                <div className="space-y-4">
+                  <label htmlFor="latitude" className="flex items-center space-x-2 text-sm font-medium text-[hsl(var(--foreground-muted))]">
+                    <MapPin className="h-4 w-4 text-[hsl(var(--accent))]" />
                     Latitude
                   </label>
                   <input
@@ -136,11 +140,12 @@ export function ChartWidget({ chartType, defaultData }: ChartWidgetProps) {
                     step="0.0001"
                     value={birthData.birth_latitude.toString()}
                     onChange={(e) => setBirthData(prev => ({ ...prev, birth_latitude: parseFloat(e.target.value) }))}
-                    className="w-full px-3 py-2 border border-[hsl(var(--observatory-border))]/30 rounded-lg bg-[hsl(var(--observatory-background))]/20 text-[hsl(var(--observatory-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--observatory-accent))]"
+                    className="w-full px-4 py-3 border border-[hsl(var(--border))/0.3] rounded-lg bg-[hsl(var(--background))/0.2] text-[hsl(var(--foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:border-[hsl(var(--accent))] transition-all duration-200"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="longitude" className="text-sm font-medium text-muted-foreground block">
+                <div className="space-y-4">
+                  <label htmlFor="longitude" className="flex items-center space-x-2 text-sm font-medium text-[hsl(var(--foreground-muted))]">
+                    <MapPin className="h-4 w-4 text-[hsl(var(--accent))]" />
                     Longitude
                   </label>
                   <input
@@ -149,13 +154,14 @@ export function ChartWidget({ chartType, defaultData }: ChartWidgetProps) {
                     step="0.0001"
                     value={birthData.birth_longitude.toString()}
                     onChange={(e) => setBirthData(prev => ({ ...prev, birth_longitude: parseFloat(e.target.value) }))}
-                    className="w-full px-3 py-2 border border-[hsl(var(--observatory-border))]/30 rounded-lg bg-[hsl(var(--observatory-background))]/20 text-[hsl(var(--observatory-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--observatory-accent))]"
+                    className="w-full px-4 py-3 border border-[hsl(var(--border))/0.3] rounded-lg bg-[hsl(var(--background))/0.2] text-[hsl(var(--foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:border-[hsl(var(--accent))] transition-all duration-200"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="timezone" className="text-sm font-medium text-muted-foreground block">
+              <div className="space-y-4">
+                <label htmlFor="timezone" className="flex items-center space-x-2 text-sm font-medium text-[hsl(var(--foreground-muted))]">
+                  <MapPin className="h-4 w-4 text-[hsl(var(--accent))]" />
                   Timezone
                 </label>
                 <input
@@ -163,31 +169,36 @@ export function ChartWidget({ chartType, defaultData }: ChartWidgetProps) {
                   type="text"
                   value={birthData.timezone}
                   onChange={(e) => setBirthData(prev => ({ ...prev, timezone: e.target.value }))}
-                  className="w-full px-3 py-2 border border-[hsl(var(--observatory-border))]/30 rounded-lg bg-[hsl(var(--observatory-background))]/20 text-[hsl(var(--observatory-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--observatory-accent))]"
+                  className="w-full px-4 py-3 border border-[hsl(var(--border))/0.3] rounded-lg bg-[hsl(var(--background))/0.2] text-[hsl(var(--foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))] focus:border-[hsl(var(--accent))] transition-all duration-200"
                   placeholder="+05:30"
                 />
               </div>
             </form>
           </CardContent>
-          <CardFooter className="flex justify-end space-x-3">
+          <CardFooter className="flex justify-end space-x-4 pt-4">
             <Button
               variant="outline"
               size="icon"
               onClick={handleGenerateChart}
               disabled={isGenerating}
+              className="hover:bg-[hsl(var(--foreground))/0.05] transition-all duration-200"
             >
               {isGenerating ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
+                <Sparkles className="h-4 w-4" />
               )}
             </Button>
             <Button
               variant={isGenerating ? 'outline' : 'default'}
               disabled={isGenerating || isD1Pending || isD9Pending}
               onClick={handleGenerateChart}
+              className="
+                transition-all duration-300
+                hover:scale-[1.02]
+                active:scale-[0.98]
+                {isGenerating ? 'opacity-80' : ''}
+              "
             >
               {isGenerating ? 'Generating...' : 'Generate Chart'}
             </Button>
@@ -195,20 +206,20 @@ export function ChartWidget({ chartType, defaultData }: ChartWidgetProps) {
         </Card>
 
         {error && (
-          <div className="rounded-lg bg-[hsl(var(--observatory-destructive))]/10 border border-[hsl(var(--observatory-destructive))]/20 px-4 py-3 text-[hsl(var(--observatory-destructive))] text-sm">
+          <div className="rounded-lg bg-[hsl(var(--destructive))]/10 border border-[hsl(var(--destructive))]/20 px-4 py-3 text-[hsl(var(--destructive))] text-sm">
             {error}
           </div>
         )}
 
         {isGenerating && !chartResult && (
           <div className="flex items-center justify-center py-8">
-            <Loader2 className="h-8 w-8 text-[hsl(var(--observatory-accent))] animate-spin" />
+            <Loader2 className="h-8 w-8 text-[hsl(var(--accent))] animate-spin" />
           </div>
         )}
 
         {chartResult && (
           <div className="relative">
-            <div className="mb-4">
+            <div className="mb-6">
               <ChartBase className="h-[500px] w-full">
                 {chartType === 'd1' ? (
                   <D1Chart chartData={chartResult} className="opacity-0 animate-materialize" />
@@ -218,7 +229,7 @@ export function ChartWidget({ chartType, defaultData }: ChartWidgetProps) {
               </ChartBase>
             </div>
 
-            <div className="space-y-2 text-center text-[hsl(var(--observatory-foreground-muted))] text-sm">
+            <div className="space-y-4 text-center text-[hsl(var(--foreground-muted))] text-sm">
               <p>
                 <strong>Born:</strong>
                 {chartResult.birth_date} at {chartResult.birth_time}
@@ -232,6 +243,21 @@ export function ChartWidget({ chartType, defaultData }: ChartWidgetProps) {
                 <strong>Chart Type:</strong>
                 {chartType.toUpperCase()}
               </p>
+            </div>
+
+            {/* Planetary Positions Section */}
+            <div className="mt-8">
+              <h3 className="text-xl font-display text-[hsl(var(--foreground))] mb-4">
+                Planetary Positions
+              </h3>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {chartResult.planetary_positions.map((planet) => (
+                  <PlanetaryPositionCard
+                    key={planet.planet}
+                    planet={planet}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         )}
